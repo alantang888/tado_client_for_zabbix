@@ -1,6 +1,6 @@
 A simple go program for run with Zabbix
 
-This is not an offical tool from Tado or Zabbix. I just an end user of both.
+This is not an official tool from Tado or Zabbix. I just an end user of both.
 
 Zabbix template tested on Zabbix 5.2 running on Raspberry Pi 3
 
