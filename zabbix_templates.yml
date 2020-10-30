@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.2'
-  date: '2020-10-30T10:02:44Z'
+  date: '2020-10-30T10:13:46Z'
   groups:
     -
       name: Templates
@@ -93,11 +93,42 @@ zabbix_export:
               value_type: TEXT
           graph_prototypes:
             -
+              name: 'Zone {#TADO_ZONE_NAME} All-in-One'
+              graph_items:
+                -
+                  sortorder: '1'
+                  drawtype: FILLED_REGION
+                  color: FFECB3
+                  yaxisside: RIGHT
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.heating_power_percentage[{#TADO_ZONE_NAME}]'
+                -
+                  sortorder: '2'
+                  color: F63100
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.temp[{#TADO_ZONE_NAME}]'
+                -
+                  sortorder: '3'
+                  color: 00FF00
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.target_temp[{#TADO_ZONE_NAME}]'
+                -
+                  sortorder: '4'
+                  color: 0040FF
+                  yaxisside: RIGHT
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.humidity[{#TADO_ZONE_NAME}]'
+            -
               name: 'Zone {#TADO_ZONE_NAME} Heating Power'
               graph_items:
                 -
                   sortorder: '1'
-                  color: FF0000
+                  drawtype: FILLED_REGION
+                  color: FFECB3
                   item:
                     host: 'Tado Template'
                     key: 'tado.zone.heating_power_percentage[{#TADO_ZONE_NAME}]'
@@ -112,17 +143,17 @@ zabbix_export:
                     key: 'tado.zone.temp[{#TADO_ZONE_NAME}]'
                 -
                   sortorder: '2'
+                  color: 00FF00
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.target_temp[{#TADO_ZONE_NAME}]'
+                -
+                  sortorder: '3'
                   color: 0040FF
                   yaxisside: RIGHT
                   item:
                     host: 'Tado Template'
                     key: 'tado.zone.humidity[{#TADO_ZONE_NAME}]'
-                -
-                  sortorder: '3'
-                  color: FFBF00
-                  item:
-                    host: 'Tado Template'
-                    key: 'tado.zone.target_temp[{#TADO_ZONE_NAME}]'
       macros:
         -
           macro: '{$TADO_PASSWD}'
