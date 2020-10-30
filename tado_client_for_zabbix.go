@@ -18,6 +18,7 @@ type ZoneState struct {
 	Temp         float64 `json:"temp"`
 	Humidity     float64 `json:"humidity"`
 	HeatingPower float64 `json:"heating_power_percentage"`
+	TargetTemp   float64 `json:"target_temp"`
 }
 
 func main() {
@@ -95,6 +96,7 @@ func getZoneState(client *tado.Client, homeId int, zoneId int) {
 		Temp:         zoneDetailState.SensorDataPoints.InsideTemperature.Celsius,
 		Humidity:     zoneDetailState.SensorDataPoints.Humidity.Percentage,
 		HeatingPower: zoneDetailState.ActivityDataPoints.HeatingPower.Percentage,
+		TargetTemp:   zoneDetailState.Setting.Temperature.Celsius,
 	}
 
 	outputJson, err := json.Marshal(zoneState)

@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.2'
-  date: '2020-10-29T22:42:13Z'
+  date: '2020-10-30T10:02:44Z'
   groups:
     -
       name: Templates
@@ -53,6 +53,25 @@ zabbix_export:
               master_item:
                 key: 'tado_client_for_zabbix["-u","{$TADO_USER}","-p","{$TADO_PASSWD}","zone_status","{#TADO_ZONE_ID}"]'
             -
+              name: 'Zone {#TADO_ZONE_NAME} Target Temperature'
+              type: DEPENDENT
+              key: 'tado.zone.target_temp[{#TADO_ZONE_NAME}]'
+              delay: '0'
+              value_type: FLOAT
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - $.target_temp
+                -
+                  type: IN_RANGE
+                  parameters:
+                    - '1'
+                    - '99'
+                  error_handler: DISCARD_VALUE
+              master_item:
+                key: 'tado_client_for_zabbix["-u","{$TADO_USER}","-p","{$TADO_PASSWD}","zone_status","{#TADO_ZONE_ID}"]'
+            -
               name: 'Zone {#TADO_ZONE_NAME} Temperature'
               type: DEPENDENT
               key: 'tado.zone.temp[{#TADO_ZONE_NAME}]'
@@ -98,6 +117,12 @@ zabbix_export:
                   item:
                     host: 'Tado Template'
                     key: 'tado.zone.humidity[{#TADO_ZONE_NAME}]'
+                -
+                  sortorder: '3'
+                  color: FFBF00
+                  item:
+                    host: 'Tado Template'
+                    key: 'tado.zone.target_temp[{#TADO_ZONE_NAME}]'
       macros:
         -
           macro: '{$TADO_PASSWD}'
